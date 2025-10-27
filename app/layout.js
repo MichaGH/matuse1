@@ -1,15 +1,26 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, League_Spartan, Space_Grotesk } from "next/font/google";
 import "./globals.css";
+import Navbar from "@/components/UI/Navbar";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const primaryFont = Space_Grotesk({
+  variable: "--font-primary",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
+const secondaryFont = Inter({
+  variable: "--font-secondary",
+  subsets: ["latin"],
+});
+
+const logoFont = League_Spartan({
+    variable: "--font-title",
+    subsets: ["latin"]
+})
+
+/* const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
-});
+}); */
 
 export const metadata = {
   title: "Create Next App",
@@ -20,8 +31,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${primaryFont.variable} ${secondaryFont.variable} ${logoFont.variable}`} /* geistSans.variable */
       >
+        <Navbar />
         {children}
       </body>
     </html>
