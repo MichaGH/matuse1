@@ -24,7 +24,6 @@ const navHeight = {
     unscrolled: 80,
 };
 
-
 export default function Navbar() {
     const [scrolled, setScrolled] = useState(false);
     const [mobileOpen, setMobileOpen] = useState(false);
@@ -35,7 +34,7 @@ export default function Navbar() {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
-    const navBgColor = mobileOpen || scrolled ? "#000" : "rgba(0,0,0,0)";
+    const navBgColor = mobileOpen || scrolled ? "#ffffff" : "rgba(0,0,0,0)";
     const pathname = usePathname();
 
     return (
@@ -49,7 +48,7 @@ export default function Navbar() {
             className={`${scrolled ? "border-b-0" : "border-b border-gray-200/15"
                 } fixed top-0 left-0 w-full z-50 font-space-grotesk `}
         >
-            <div className="max-w-7xl mx-auto flex items-center justify-between h-full pl-6 md:px-16  ">
+            <div className="max-w-7xl mx-auto flex items-center justify-between h-full px-16  ">
                 {/* Left: Logo + Navigation */}
 
 
@@ -65,8 +64,8 @@ export default function Navbar() {
                         return (
                             <div key={label} className="relative group">
                                 <Link
-                                    href={href}
-                                    className={`${scrolled ? "text-white" : "text-white"
+                                    href={label}
+                                    className={`${scrolled ? "text-black" : "text-white"
                                         } uppercase font-primary text-sm  font-medium transition`}
                                 >
                                     {label}
@@ -89,7 +88,8 @@ export default function Navbar() {
                         onClick={() => setMobileOpen(!mobileOpen)}
                         aria-label="Toggle menu"
                         aria-expanded={mobileOpen}
-                        className={`relative w-12 h-12 px-3 flex flex-col items-center justify-center focus:outline-none text-white`}
+                        className={`relative w-12 h-12 px-3 flex flex-col items-center justify-center focus:outline-none ${scrolled || mobileOpen ? "text-black" : "text-white"
+                            }`}
                     >
                         <motion.span
                             {...lineProps.transition}
@@ -126,14 +126,15 @@ export default function Navbar() {
                         animate={{ x: 0 }}
                         exit={{ x: "-100%" }}
                         transition={{ duration: 0.3, ease: "easeInOut" }}
-                        className={`fixed left-0  border-t border-white/25 bg-black shadow-lg z-40 flex flex-col p-6 w-full`}
+                        className={`fixed left-0 top-[${scrolled ? navHeight.scrolled : navHeight.unscrolled
+                            }px]  bg-black shadow-lg z-40 flex flex-col p-6 w-full`}
                     >
                         {navLinks.map(({ label, href }) => {
                             return (
                                 <Link
                                     key={label}
                                     href={href}
-                                    className="py-3 text-lg text-white hover:text-blue-600 font-medium"
+                                    className="py-3 text-lg text-gray-700 hover:text-blue-600 font-medium"
                                     onClick={() => setMobileOpen(false)}
                                 >
                                     {label}

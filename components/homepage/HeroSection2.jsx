@@ -4,7 +4,7 @@ export default function HeroSection2() {
   return (
     <section
       id="domov"
-      className="relative flex items-center min-h-[calc(100vh-5rem)]"
+      className="relative flex items-center h-screen w-full"
     >
       {/* Background video */}
       <video
